@@ -3,10 +3,9 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract CritterHolesHammer is ERC1155Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract CritterHolesHammer is ERC1155Upgradeable, OwnableUpgradeable {
     
     uint256 public constant BASE_ID = 0;
     uint256 public constant LEVEL_1_ID = 1;
@@ -19,21 +18,14 @@ contract CritterHolesHammer is ERC1155Upgradeable, OwnableUpgradeable, UUPSUpgra
     event PriceUpdated(uint256 indexed levelId, uint256 newPrice);
     event NFTUpgraded(address indexed user, uint256 oldLevel, uint256 newLevel);
 
-    constructor() {
-        _disableInitializers();
-    }
-
     function initialize(address _initialOwner) public initializer {
         __ERC1155_init("https://critterholes.xyz/metadata/{id}.json");
         __Ownable_init(_initialOwner);
-        __UUPSUpgradeable_init();
 
         levelPrices[BASE_ID] = 1 ether;
         levelPrices[LEVEL_1_ID] = 10 ether;
         levelPrices[LEVEL_2_ID] = 20 ether;
     }
-
-    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     function name() public pure returns (string memory) {
         return "Critter Holes Hammer";

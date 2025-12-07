@@ -2,6 +2,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
 require("dotenv/config");
+require("@openzeppelin/hardhat-upgrades");
 
 // Get variables from .env
 const RPC_URL = process.env.CELO_RPC_URL || "";
