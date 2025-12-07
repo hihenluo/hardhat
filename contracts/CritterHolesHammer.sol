@@ -6,7 +6,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract CritterHolesHammerUpgradeable is ERC1155Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract CritterHolesHammer is ERC1155Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
     
     uint256 public constant BASE_ID = 0;
     uint256 public constant LEVEL_1_ID = 1;
@@ -29,7 +29,7 @@ contract CritterHolesHammerUpgradeable is ERC1155Upgradeable, OwnableUpgradeable
         __UUPSUpgradeable_init();
 
         levelPrices[BASE_ID] = 1 ether;
-        levelPrices[LEVEL_1_ID] = 5 ether;
+        levelPrices[LEVEL_1_ID] = 10 ether;
         levelPrices[LEVEL_2_ID] = 20 ether;
     }
 
