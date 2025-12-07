@@ -10,7 +10,8 @@ async function main() {
     const initialOwner = deployer.address;
     
     // 3. Get the Factory for the implementation contract
-    const CritterHolesHammer = await ethers.getContractFactory("CritterHolesHammer");
+    // NOTE: Pastikan nama kontrak di sini sesuai dengan nama di file Solidity Anda (CritterHolesHammerUpgradeable)
+    const CritterHolesHammer = await ethers.getContractFactory("CritterHolesHammer"); 
     console.log("Deploying CritterHolesHammerUpgradeable (UUPS Proxy)...");
 
     // 4. Deploy the Proxy. 
@@ -33,23 +34,6 @@ async function main() {
     // Optional: Get the address of the underlying implementation contract
     const currentImplementationAddress = await upgrades.erc1967.getImplementationAddress(proxyAddress);
     console.log("   Implementation contract deployed to:", currentImplementationAddress);
-
-    // 5. Verification (only applicable for networks with Block Explorers like Etherscan)
-    try {
-        if (["mainnet", "sepolia", "goerli", "polygon", "arbitrum", "optimism"].includes(hre.network.name)) {
-            console.log("Waiting for block confirmations before verification...");
-            // Wait for a minute to allow the Block Explorer to index the contract bytecode
-            await new Promise(resolve => setTimeout(resolve, 60000)); 
-
-            console.log("Verifying implementation contract...");
-            await hre.run("verify:verify", {
-                address: currentImplementationAddress,
-            });
-            console.log("✅ Implementation verified successfully.");
-        }
-    } catch (error) {
-        console.error("Verification failed:", error.message);
-    }
 }
 
 main()

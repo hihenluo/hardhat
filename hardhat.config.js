@@ -10,7 +10,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "NA";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.20",
+  solidity: "0.8.26",
   networks: {
     // Network name "celo"
     celo: {
