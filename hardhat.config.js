@@ -5,7 +5,8 @@ require("dotenv/config");
 require("@openzeppelin/hardhat-upgrades");
 
 // Get variables from .env
-const RPC_URL = process.env.CELO_RPC_URL || "";
+const CELO_RPC_URL = process.env.CELO_RPC_URL || "";
+const BASE_RPC_URL = process.env.BASE_RPC_URL || "";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "NA";
 
@@ -15,9 +16,14 @@ module.exports = {
   networks: {
     // Network name "celo"
     celo: {
-      url: RPC_URL,
+      url: CELO_RPC_URL,
       accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
       chainId: 42220, // Celo Mainnet Chain ID
+    },
+    base: {
+      url: BASE_RPC_URL,
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
+      chainId: 8453, // Base Mainnet Chain ID
     },
   },
   etherscan: {
